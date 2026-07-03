@@ -11,7 +11,7 @@ estoque_produtos = {
     10: { "nome":"Tênis Infantil Nike Revolution 7","preco":299.99,"quantidade":7},
 }
 
-
+carrinho = []
 
 
 while True:
@@ -26,12 +26,27 @@ while True:
 
     if opcao == 1:
         print("visualizando estoque")
-        for k, v in estoque_produtos():
+        for chave, valor in estoque_produtos.items():
+            print(f"{chave}:{valor}")
 
     elif opcao == 2:
         print("adicionando itens os carrinho")
+        id_produto = int(input("qual id do produto você deseja comprar?"))
+        if id_produto in estoque_produtos:
+            qtd_produto =int(input("quantas unidades voce deseja?"))
+            if qtd_produto <= 0:
+                print("Quantidade invalida")
+            elif qtd_produto <= estoque_produtos [id_produto]["quantidade"]:
+                carrinho.append(estoque_produtos[id_produto])
+                estoque_produtos[id_produto]["quantidade"]-= qtd_produto
     elif opcao == 3:
+        if carrinho:
         print("visualizando carrinho")
+        subtotal = 0
+        for i in carrinho:
+            print(f"{i["qtd"]}x{i["nome"]} no valor de R$ {i["preco"]}(cada)\nTotal R${i["preco_total"]}")
+           subtotal += i["preco_total"]
+        print(f"Subtotal da compra R${subtotal}")
     elif opcao == 4:
         print("finalizando compra")
     elif opcao == 5:
