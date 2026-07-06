@@ -49,8 +49,35 @@ while True:
         print(f"Subtotal da compra R${subtotal}")
     elif opcao == 4:
         print("finalizando compra")
-    elif opcao == 5:
-        print("sistema encerrado")
+        if not carrinho:
+            print("seu carrinho está vazio")
+        else:
+            desconto = 0
+            cupom = input("digite um cupom valido")
+            if cupom == "DEV10":
+                desconto = subtotal * 0.1
+                print("cupom de 10%")
+            elif cupom == "DEV20" and subtotal > 500:
+                desconto = subtotal * 0.2
+                print("cupom de 20%")
+            elif len(cupom) == 0:
+                print("nenhum cupom foi adicionado")
+            else:
+                print("Cupom invalido")
+                print("-------RESUMO DO PEDIDO-------")
+                print(f" Subtotal da Compra :  R${subtotal:.2f}")
+                print(f" Desconto :  R${desconto:.2f}")
+                print(f" Valor final : R${subtotal - desconto :.2f}")
+                print("-" * 30)
+                finalizar = input("deseja finalizar a compra s/n:")
+                if finalizar == 's':
+                    carrinho.clear()
+                else:
+                    print("compra finalizada. Saindo do sistema...")
+                    break
+
+    elif opcao == 0:
+        print("sistema encerrado...")
         break
     else:
         print("opção invalida")
