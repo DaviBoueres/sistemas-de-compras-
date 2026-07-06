@@ -41,11 +41,11 @@ while True:
                 estoque_produtos[id_produto]["quantidade"]-= qtd_produto
     elif opcao == 3:
         if carrinho:
-        print("visualizando carrinho")
+         print("visualizando carrinho")
         subtotal = 0
         for i in carrinho:
             print(f"{i["qtd"]}x{i["nome"]} no valor de R$ {i["preco"]}(cada)\nTotal R${i["preco_total"]}")
-           subtotal += i["preco_total"]
+            subtotal += i["preco_total"]
         print(f"Subtotal da compra R${subtotal}")
     elif opcao == 4:
         print("finalizando compra")
